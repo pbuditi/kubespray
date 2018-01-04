@@ -47,10 +47,14 @@ kube_users:
     role: admin
     groups:
       - system:masters
-
+  root:
+    pass: "{{kube_api_pwd}}"
+    role: admin
+    groups:
+      - system:masters
 ## It is possible to activate / deactivate selected authentication methods (basic auth, static token auth)
 #kube_oidc_auth: false
-#kube_basic_auth: false
+kube_basic_auth: true
 #kube_token_auth: false
 
 
@@ -72,7 +76,7 @@ kube_network_plugin: calico
 # weave's network password for encryption
 # if null then no network encryption
 # you can use --extra-vars to pass the password in command line
-weave_password: EnterPasswordHere
+weave_password:
 
 # Weave uses consensus mode by default
 # Enabling seed mode allow to dynamically add or remove hosts
@@ -117,7 +121,7 @@ dns_mode: kubedns
 # Can be docker_dns, host_resolvconf or none
 resolvconf_mode: docker_dns
 # Deploy netchecker app to verify DNS resolve as an HTTP service
-deploy_netchecker: false
+deploy_netchecker: true
 # Ip address of the kubernetes skydns service
 skydns_server: "{{ kube_service_addresses|ipaddr('net')|ipaddr(3)|ipaddr('address') }}"
 dnsmasq_dns_server: "{{ kube_service_addresses|ipaddr('net')|ipaddr(2)|ipaddr('address') }}"
@@ -148,7 +152,7 @@ k8s_image_pull_policy: IfNotPresent
 dashboard_enabled: true
 
 # Monitoring apps for k8s
-efk_enabled: false
+efk_enabled: true
 
 # Helm deployment
 helm_enabled: false
