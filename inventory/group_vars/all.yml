@@ -1,5 +1,5 @@
 # Valid bootstrap options (required): ubuntu, coreos, centos, none
-bootstrap_os: centos
+bootstrap_os: ubuntu
 
 #Directory where etcd data stored
 etcd_data_dir: /var/lib/etcd
@@ -59,7 +59,7 @@ bin_dir: /usr/local/bin
 ## If set the possible values are either 'gce', 'aws', 'azure', 'openstack', 'vsphere', or 'external'
 ## When openstack is used make sure to source in the openstack credentials
 ## like you would do when using nova-client before starting the playbook.
-#cloud_provider:
+cloud_provider: openstack
 
 ## When azure is used, you need to also set the following variables.
 ## see docs/azure.md for details on how to get these values
@@ -75,7 +75,7 @@ bin_dir: /usr/local/bin
 #azure_route_table_name:
 
 ## When OpenStack is used, Cinder version can be explicitly specified if autodetection fails (https://github.com/kubernetes/kubernetes/issues/50461)
-#openstack_blockstorage_version: "v1/v2/auto (default)"
+openstack_blockstorage_version: "v1"
 ## When OpenStack is used, if LBaaSv2 is available you can enable it with the following variables.
 #openstack_lbaas_enabled: True
 #openstack_lbaas_subnet_id: "Neutron subnet ID (not network ID) to create LBaaS VIP"
